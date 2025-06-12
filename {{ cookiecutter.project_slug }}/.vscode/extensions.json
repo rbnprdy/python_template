@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "bierner.github-markdown-preview",
+        "charliermarsh.ruff",
+        "ms-python.mypy-type-checker"
+    ]
+}

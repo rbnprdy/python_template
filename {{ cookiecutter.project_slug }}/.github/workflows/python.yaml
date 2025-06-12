@@ -1,0 +1,30 @@
+name: python 
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+      - run: uv run --dev --frozen ruff check
+      - run: uv run --dev --frozen ruff format --check 
+      - run: uv run --dev --frozen mypy src tests 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+      - run: uv run --dev --frozen coverage run -m pytest
+      - run: uv run coverage report -m > coverage.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: |
+            coverage.txt
+            htmlcov/
