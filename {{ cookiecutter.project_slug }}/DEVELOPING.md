@@ -44,13 +44,13 @@ to install a specific dependency (or update that dependency to the latest compat
 After cloning the repo for the first time, you should run
 
 ```shell
-pre-commit install
+uv run --dev pre-commit install
 ```
 
 to install the pre-commit hooks. If you make any changes to the pre-commit config, you should re-run against all files
 
 ```shell
-pre-commit run --all-files
+uv run --dev pre-commit run --all-files
 ```
 
 Make sure the versions of the tools in [.pre-commit-config.yaml](/.pre-commit-config.yaml) are kept up-to-date and in sync with the versions specified by `uv` in [pyproject.toml](/pyproject.toml)

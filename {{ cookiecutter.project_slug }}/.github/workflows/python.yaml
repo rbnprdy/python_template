@@ -22,7 +22,8 @@ jobs:
         uses: astral-sh/setup-uv@v6
       - run: uv run --dev --frozen coverage run -m pytest
       - run: uv run coverage report -m > coverage.txt
-      - uses: actions/upload-artifact@v3
+      - run: uv run coverage html
+      - uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: |
